@@ -1,0 +1,185 @@
+body {
+    padding: 0;
+    margin: 0;
+}
+html, body {
+    height: 100%;
+    width: 100%;
+}
+
+#map {
+    height: 100%;
+    width: 100%;
+    background-color: #f0e4cc;
+}
+
+#logoMain {
+    position: absolute;
+    z-index: 800;
+    top: 8px;
+    left: 20px;
+    cursor: pointer;
+}
+
+
+/* side -panel-css */
+#left-side-panel {
+    background-color: white;
+    position: absolute;
+    top: 159px;
+    left: 20px;
+    width: 0px;
+    height: 0px;
+    font-size: 12px;
+    z-index: 900;
+    border: 2px solid #030d13fe;
+}
+
+@keyframes small-to-big {
+    from {width: 0px; height: 0px;}
+    to {width: 407px; height:700px}
+}
+@keyframes big-to-small {
+    from {width: 407px; height:700px; font-size:12px;}
+    to {width: 0px; height: 0px; font-size:0px;}
+}
+/* color:transparent;
+    font-size:0; */
+#triger-button {
+    position: absolute;
+    top: 40px;
+    left: 440px;
+    padding: 10px 10px 10px 10px;
+}
+
+/* side-panel-content */
+.myImg {
+    /* border-radius: 5px; */
+    cursor: pointer;
+    float: left;
+    transition: 0.3s;
+}
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 901; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+}
+.modal-logo {
+    /* position: absolute;
+    top: 15px;
+    left: 35px; */
+    display: block;
+    position:relative;
+    margin:0 auto;
+    /* (600 / 2) - (60/2) */
+    left:-270px;   
+    padding: 10px 0;
+
+
+}
+
+/* Caption of Modal Image */
+.caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, .caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+
+.Images {
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+.Images p {
+    padding-left: 16px;
+}
+
+.Images:hover {
+    background-color: #0d3852;
+    color: #eeae6d;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+@keyframes outZoom {
+    from {transform:scale(1)} 
+    to {transform:scale(0)}
+}
+
+/* 100% Image Width on Smaller Screens       NEEDS TO MODIFY THIS !!!!!!!!!!!!!   */ 
+@media only screen and (max-width: 500px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+button {
+    z-index: 901;
+}
+
+.leaflet-top{
+    z-index: 800;
+}

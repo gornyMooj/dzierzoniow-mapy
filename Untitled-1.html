@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Leaflet  https://github.com/domoritz/leaflet-locatecontrol -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+
+<style>
+/* side -panel-css */
+#left-side-panel {
+    background-color: aquamarine;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 0px;
+    height: 0px;
+    font-size: 12px;
+}
+
+@keyframes small-to-big {
+    from {width: 0px; height: 0px;}
+    to {width: 360px; height:700px}
+}
+@keyframes big-to-small {
+    from {width: 360px; height:700px; font-size:12px;}
+    to {width: 0px; height: 0px; font-size:0px;}
+}
+/* color:transparent;
+    font-size:0; */
+#triger-button {
+    position: absolute;
+    top: 40px;
+    left: 440px;
+    padding: 10px 10px 10px 10px;
+}
+
+/* side-panel-content */
+.myImg {
+    /* border-radius: 5px; */
+    cursor: pointer;
+    float: left;
+    transition: 0.3s;
+}
+
+.myImg:hover {
+    opacity: 0.7;
+}
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 900; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+}
+.modal-logo {
+    /* position: absolute;
+    top: 15px;
+    left: 35px; */
+    display: block;
+    position:relative;
+    margin:0 auto;
+    /* (600 / 2) - (60/2) */
+    left:-270px;   
+    padding: 10px 0;
+
+
+}
+
+/* Caption of Modal Image */
+.caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 600px;
+    text-align: center;
+    color: #ccc;
+    padding: 10px 0;
+    height: 150px;
+}
+
+/* Add Animation */
+.modal-content, .caption {    
+    -webkit-animation-name: zoom;
+    -webkit-animation-duration: 0.6s;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+    from {-webkit-transform:scale(0)} 
+    to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+    from {transform:scale(0)} 
+    to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.Images:hover {
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.Images {
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+}
+.Images p {
+    padding-left: 16px;
+}
+
+@keyframes outZoom {
+    from {transform:scale(1)} 
+    to {transform:scale(0)}
+}
+
+/* 100% Image Width on Smaller Screens       NEEDS TO MODIFY THIS !!!!!!!!!!!!!   */ 
+@media only screen and (max-width: 500px){
+    .modal-content {
+        width: 100%;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div id="left-side-panel"></div>
+
+<div id="myModal" class="modal">
+    <span class="close">&times;</span>
+        
+    <img  class="modal-logo" src="logo.jpg" style="width:100%;max-width:60px">
+        
+    <div class="modal-content">
+        <div class="container-for-map"></div>
+    </div>
+    <div class="caption"></div>
+</div>
+
+<button id="triger-button" onclick="openDiv()">Open div</button>
+<script>
+    // object that keeps images and their descritions
+    var jpgMaps = [
+        {jpgSmall:'images/5164_Schweidnitz_1936_small.jpg',
+            jpgBig:'images/5164_Schweidnitz_1936.jpg', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5165_Weizenrodau_2_1936_small.jpg',
+            jpgBig:'images/5165_Weizenrodau_2_1936.jpg', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5166_Zobten_1938_small.jpg',
+            jpgBig:'images/5166_Zobten_1938.jpg',
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5264_Bad_Charlottenbrunn_1939_small.jpg',
+            jpgBig:'images/5264_Bad_Charlottenbrunn_1939.jpg', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5265_Reichenbach_small.png',
+            jpgBig:'images/5265_Reichenbach.png', 
+            title: 'XXXXX', 
+            alt: 'XXXX'}, 
+        {jpgSmall:'images/5266_Lauterbach_1936_small.jpg',
+            jpgBig:'images/5266_Lauterbach_1936.jpg', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5364_Wustegiersdorf_small.png',
+            jpgBig:'images/5364_Wustegiersdorf.png', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5365_Langenbielau_1940_small.jpg',
+            jpgBig:'images/5365_Langenbielau_1940.jpg', 
+            title: 'XXXXX', 
+            alt: 'XXXX'},
+        {jpgSmall:'images/5366_Gnadenfrei_1938_small.jpg', 
+            jpgBig:'images/5366_Gnadenfrei_1938.jpg',
+            title: 'XXXXX', 
+            alt: 'XXXX'},   
+    ];
+
+    // creates leaflet view with the image 
+    function createMapWithImageInModal(id) {
+        var w = 2000,
+            h = 1500,
+            url = jpgMaps[id].jpgBig,
+            
+            map = L.map('mymap', {
+                minZoom: 1,
+                maxZoom: 4,
+                center: [0, 0],
+                zoom: 1,
+                crs: L.CRS.Simple,
+                
+            });
+        var southWest = map.unproject([0, h], map.getMaxZoom()-1);
+        var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
+        var bounds = new L.LatLngBounds(southWest, northEast);
+        
+        addedImage = L.imageOverlay(url, bounds, {attribution: "Source: [URL], Application Created by: Lukasz Gorny"});
+        
+        addedImage.addTo(map);
+        map.setMaxBounds(bounds);
+    };
+
+    // method that adds content to the side panel
+    function addContentToSideImagePanel() {
+            for (i=0, n = jpgMaps.length; i < n; i++) {
+
+                var creatDIV = document.createElement("DIV");
+                creatDIV.id = 'ImageCont' + i;
+                var para = document.createElement("p");
+                //var node = document.createTextNode(jpgMaps[i].title);
+                para.innerHTML = jpgMaps[i].title;
+
+                // create image and add to div
+                var picture = document.createElement('img');
+                picture.classList.add("myImg");
+                picture.id = 'Image' + i;
+                picture.alt = jpgMaps[i].title;
+                picture.src = jpgMaps[i].jpgSmall;
+                // adds and images and text to div
+                creatDIV.appendChild(picture);
+                //para.appendChild(node);
+                creatDIV.appendChild(para);
+                creatDIV.className = "Images";
+                // adds div with image and text to side-panel
+                var element = document.getElementById("left-side-panel");
+                element.appendChild(creatDIV);
+
+                // style elements in divs: images and divs
+                document.getElementById('Image' + i).style.width = "100%";
+                document.getElementById('Image' + i).style.maxWidth = "50px";
+                document.getElementById('ImageCont' + i).style.color = "white",
+                document.getElementById('ImageCont' + i).style.backgroundColor = "black";
+            };
+        };
+
+        // initialises onClick event for divs in pictures with images
+        function addOnclickToImagesInSidePanel() {
+            var divWithPicture = document.getElementsByClassName('Images');
+                for (var i=0; i < divWithPicture.length; i++) {
+                
+                    // Here we have the same onclick 
+                    divWithPicture.item(i).onclick = function() {
+                    //console.log(this);
+                    // gets id name of image that was clicked in the side panel
+                    var idHTMLname = this.id;
+                    var idImage =  parseInt(idHTMLname.slice(-1));
+
+                    var modal = document.getElementById('myModal');
+                    var modalImg = document.getElementById(idHTMLname);
+                    var captionText = document.getElementsByClassName("caption")[0];
+
+                    modal.style.display = "block";
+
+                    
+                    var containerForMap = document.getElementsByClassName("container-for-map")[0];
+                    var tempContainerForMap = document.createElement('div');
+                    containerForMap.appendChild(tempContainerForMap);
+                    tempContainerForMap.classList.add("temp-div-for-map");
+
+
+                    var childContainerForMap = document.createElement('div');
+                    childContainerForMap.id = 'mymap';
+                    childContainerForMap.style.backgroundColor = 'none';
+                    childContainerForMap.style.height = "600px";
+                    childContainerForMap.style.width = "600px";
+                    var parentContainer = document.getElementsByClassName('temp-div-for-map')[0];
+                    parentContainer.appendChild(childContainerForMap);   //
+                    
+                    
+                    createMapWithImageInModal(idImage); // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        
+                    //appends description from array with images to Modal
+                    captionText.innerHTML = jpgMaps[idImage].title;
+
+
+                    var span = document.getElementsByClassName("close")[0];
+
+                    // When the user clicks on <span> (x), close the modal
+                    span.onclick = function() { 
+                        modal.style.display = "none";
+                        // my code to remove div from container-for-map
+                        var list = document.getElementsByClassName("temp-div-for-map");
+                        for(var i = list.length - 1; 0 <= i; i--)
+                        if(list[i] && list[i].parentElement)
+                        list[i].parentElement.removeChild(list[i]);
+
+                    };               
+                };
+            };
+        };
+    // method used to open side panel 
+    function openDiv() {
+
+        var getDiv = document.getElementById("left-side-panel");
+        var getDivStyle = getDiv.style;
+        // opens div-side-panel
+        if(getDivStyle.height === "0px" || getDivStyle.height === "") {
+            getDivStyle.animationName = "small-to-big";
+            getDivStyle.animationDuration = "0.7s";     
+            getDiv.addEventListener("webkitAnimationEnd", function(){
+                getDivStyle.height = "700px";
+                getDivStyle.width = "360px";
+                // adds content to the side-panel (images and a name of elements)
+                addContentToSideImagePanel();
+                addOnclickToImagesInSidePanel();
+             });
+        //closes div-side-panel
+        } else {
+            console.log("dizala");
+            getDivStyle.animationName = "big-to-small";
+            getDivStyle.animationDuration = "0.2s";
+            getDiv.addEventListener("webkitAnimationEnd", function(){
+                getDivStyle.height = "0px";
+                getDivStyle.width = "0px";
+                getDiv.innerHTML = "";
+            });
+
+        };
+    };
+
+
+</script>
+
+</body>
+</html>
