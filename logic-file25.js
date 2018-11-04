@@ -1,7 +1,7 @@
 function init() {
 
   var satelliteImage = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
-      Messtischblatt =  L.tileLayer('https://moojtest.s3.amazonaws.com/ready_maps/{z}/{y}/{x}.png'),
+      Messtischblatt =  L.tileLayer('https://moojtest.s3.amazonaws.com/ready_maps/{z}/{x}/{y}.png'),
       BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'),
       BlackAndWhite2 = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'),
       OSMmapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png'),
