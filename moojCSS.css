@@ -12,6 +12,9 @@ html, body {
     width: 100%;
     background-color: #f0e4cc;
 }
+#mymap{
+    background-color: #262626;
+}
 
 #logoMain {
     position: absolute;

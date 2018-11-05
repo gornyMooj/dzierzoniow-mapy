@@ -121,52 +121,79 @@ function init() {
     // object that keeps images and their descritions
     var jpgMaps = [
       {jpgSmall:'images/5164_Schweidnitz_1936_small.jpg',
-          jpgBig:'images/5164_Schweidnitz_1936.jpg', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+        jpgBig:'images/5164_Schweidnitz_1936.jpg', 
+        title: '<b>Schweidnitz</b> - Świdnica', 
+        alt: 'XXXX',
+        x: 6672,
+        y: 6672
+        },
       {jpgSmall:'images/5165_Weizenrodau_2_1936_small.jpg',
           jpgBig:'images/5165_Weizenrodau_2_1936.jpg', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Weizenrodau</b> - Pszenno', 
+          alt: 'XXXX',
+          x: 6514,
+          y: 6936
+        },
       {jpgSmall:'images/5166_Zobten_1938_small.jpg',
           jpgBig:'images/5166_Zobten_1938.jpg',
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Zobten</b> - Sobótka', 
+          alt: 'XXXX',
+          x: 6680,
+          y: 7041
+        },
       {jpgSmall:'images/5264_Bad_Charlottenbrunn_1939_small.jpg',
           jpgBig:'images/5264_Bad_Charlottenbrunn_1939.jpg', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Bad Charlottenbrunn</b> - Jedlina Zdrój', 
+          alt: 'XXXX',
+          x: 6465,
+          y: 6719
+        },
       {jpgSmall:'images/5265_Reichenbach_small.png',
           jpgBig:'images/5265_Reichenbach.png', 
-          title: 'XXXXX', 
-          alt: 'XXXX'}, 
+          title: '<b>Reichenbach</b> - Dzierżoniów', 
+          alt: 'XXXX',
+          x: 4421,
+          y: 4417
+        }, 
       {jpgSmall:'images/5266_Lauterbach_1936_small.jpg',
           jpgBig:'images/5266_Lauterbach_1936.jpg', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Lauterbach</b> - Sieniawka', 
+          alt: 'XXXX',
+          x: 6683,
+          y: 6980
+        },
       {jpgSmall:'images/5364_Wustegiersdorf_small.png',
           jpgBig:'images/5364_Wustegiersdorf.png', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Wustegiersdorf</b> - Głuszyca', 
+          alt: 'XXXX',
+          x: 4521,
+          y: 4462
+        },
       {jpgSmall:'images/5365_Langenbielau_1940_small.jpg',
           jpgBig:'images/5365_Langenbielau_1940.jpg', 
-          title: 'XXXXX', 
-          alt: 'XXXX'},
+          title: '<b>Langenbielau</b> - Bielawa', 
+          alt: 'XXXX',
+          x: 6487,
+          y: 7011
+        },
       {jpgSmall:'images/5366_Gnadenfrei_1938_small.jpg', 
           jpgBig:'images/5366_Gnadenfrei_1938.jpg',
-          title: 'XXXXX', 
-          alt: 'XXXX'},   
+          title: '<b>Gnadenfrei</b> - Piława', 
+          alt: 'XXXX',
+          x: 6732,
+          y: 7005
+        },   
   ];
 
-  // creates leaflet view with the image 
+  // creates leaflet view with the image
   function createMapWithImageInModal(id) {
-      var w = 2000,
-          h = 1500,
+      var w = jpgMaps[id].x,
+          h = jpgMaps[id].y,
           url = jpgMaps[id].jpgBig,
           
           map = L.map('mymap', {
               minZoom: 1,
-              maxZoom: 4,
+              maxZoom: 6,
               center: [0, 0],
               zoom: 1,
               crs: L.CRS.Simple,
@@ -176,7 +203,7 @@ function init() {
       var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
       var bounds = new L.LatLngBounds(southWest, northEast);
       
-      addedImage = L.imageOverlay(url, bounds, {attribution: "Source: [URL], Application Created by: Lukasz Gorny"});
+      addedImage = L.imageOverlay(url, bounds, {attribution: 'Source: <a href="http://mapy.amzp.pl/">Archiwum Mpa Zachodniej Polski</a> | Application Created by: <a href="https://www.linkedin.com/in/lukasz-gorny-327732133/">Lukasz Gorny</a>'});
       
       addedImage.addTo(map);
       map.setMaxBounds(bounds);
