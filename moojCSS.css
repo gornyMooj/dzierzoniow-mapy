@@ -35,12 +35,12 @@ html, body {
     height: 0px;
     font-size: 12px;
     z-index: 900;
-    border: 2px solid #030d13fe;
+    border: 0px solid #030d13fe;
 }
 
 @keyframes small-to-big {
-    from {width: 0px; height: 0px;}
-    to {width: 407px; height:700px}
+    from {width: 0px; height: 0px; border: 0px solid #030d13fe;}
+    to {width: 407px; height:700px; border: 2px solid #030d13fe;}
 }
 @keyframes big-to-small {
     from {width: 407px; height:700px; font-size:12px;}
@@ -58,7 +58,6 @@ html, body {
 /* side-panel-content */
 .myImg {
     /* border-radius: 5px; */
-    cursor: pointer;
     float: left;
     transition: 0.3s;
 }
@@ -163,9 +162,16 @@ html, body {
 .Images:hover {
     background-color: #0d3852;
     color: #eeae6d;
-    opacity: 0.7;
+    /* opacity: 0.6; */
     cursor: pointer;
+    height: 70px;
+
 }
+.Images:hover > .myImg {
+    width: 100%;
+    max-width: 60px !important;
+}
+
 
 @keyframes outZoom {
     from {transform:scale(1)} 

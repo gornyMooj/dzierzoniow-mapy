@@ -203,7 +203,7 @@ function init() {
       var northEast = map.unproject([w, 0], map.getMaxZoom()-1);
       var bounds = new L.LatLngBounds(southWest, northEast);
       
-      addedImage = L.imageOverlay(url, bounds, {attribution: 'Source: <a href="http://mapy.amzp.pl/">Archiwum Mpa Zachodniej Polski</a> | Application Created by: <a href="https://www.linkedin.com/in/lukasz-gorny-327732133/">Lukasz Gorny</a>'});
+      addedImage = L.imageOverlay(url, bounds, {attribution: 'Source: <a href="http://mapy.amzp.pl/">Archiwum Map Zachodniej Polski</a> | Application Created by: <a href="https://www.linkedin.com/in/lukasz-gorny-327732133/">Lukasz Gorny</a>'});
       
       addedImage.addTo(map);
       map.setMaxBounds(bounds);
@@ -236,9 +236,9 @@ function init() {
 
               // style elements in divs: images and divs
               document.getElementById('Image' + i).style.width = "100%";
-              document.getElementById('Image' + i).style.maxWidth = "50px";
-              document.getElementById('ImageCont' + i).style.color = "#030d13fe",
-              document.getElementById('ImageCont' + i).style.backgroundColor = "white";
+              document.getElementById('Image' + i).style.maxWidth = "30px";
+              //document.getElementById('ImageCont' + i).style.color = "#030d13fe",
+              //document.getElementById('ImageCont' + i).style.backgroundColor = "white";
           };
       };
 
@@ -309,6 +309,7 @@ function init() {
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "700px";
               getDivStyle.width = "407px";
+              getDivStyle.borderWidth = "2px";
               // adds content to the side-panel (images and a name of elements)
               addContentToSideImagePanel();
               addOnclickToImagesInSidePanel();
@@ -321,6 +322,7 @@ function init() {
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "0px";
               getDivStyle.width = "0px";
+              getDivStyle.borderWidth = "0px";
               getDiv.innerHTML = "";
           });
 
