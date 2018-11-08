@@ -231,7 +231,7 @@ function init() {
               creatDIV.appendChild(para);
               creatDIV.className = "Images";
               // adds div with image and text to side-panel
-              var element = document.getElementById("left-side-panel");
+              var element = document.getElementById("left-side-panel-main-container");
               element.appendChild(creatDIV);
 
               // style elements in divs: images and divs
@@ -308,7 +308,7 @@ function init() {
           getDivStyle.animationDuration = "0.7s";     
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "700px";
-              getDivStyle.width = "407px";
+              getDivStyle.width = "408px";
               getDivStyle.borderWidth = "2px";
               // adds content to the side-panel (images and a name of elements)
               addContentToSideImagePanel();
@@ -323,26 +323,27 @@ function init() {
               getDivStyle.height = "0px";
               getDivStyle.width = "0px";
               getDivStyle.borderWidth = "0px";
-              getDiv.innerHTML = "";
+              //getDiv.innerHTML = "";
+              document.getElementById("left-side-panel-main-container").innerHTML = "";
           });
 
       };
   };
 
+
+
 // button onclick when window.onload is used
 var opSideDivOnClick = document.getElementById('logoMain');
   opSideDivOnClick.onclick = function() {
+      
     openDiv();
+
+
   };
 
   openDiv();
 
-
-
-
-
-
-// styling leaflet zoom control
+// http://css3.bradshawenterprises.com/cfimg/     styling image
 
 
 };
