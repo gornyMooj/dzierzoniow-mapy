@@ -46,6 +46,7 @@ html, body {
     max-height: 500px;
 }
 
+/* THE cards that are used in the navigation between panels */
 #card-one {
     position: absolute;
     bottom: 0px;
@@ -58,7 +59,7 @@ html, body {
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
     box-shadow:inset 0px 0px 0px 2px white;
-    
+    opacity:0;
 }
 
 #card-two {
@@ -73,6 +74,7 @@ html, body {
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
     box-shadow:inset 0px 0px 0px 2px white;
+    opacity:0;
 }
 #card-three {
     position: absolute;
@@ -86,6 +88,7 @@ html, body {
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
     box-shadow:inset 0px 0px 0px 2px white;
+    opacity:0;
 }
 #card-four {
     position: absolute;
@@ -99,9 +102,23 @@ html, body {
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
     box-shadow:inset 0px 0px 0px 2px white;
+    opacity:0;
+}
+
+/* Animations used for the cards  */
+@keyframes small-to-big-cards {
+    from {transform: scale(0); opacity:0;} 
+    to {transform: scale(1); opacity:1;}
+}
+
+@keyframes big-to-small-cards {
+    0% {transform: scale(1); opacity:1;} 
+    10% {transform: scale(0); opacity:0;}
+    100% {transform: scale(0); opacity:0;}
 }
 
 
+/* Animations USED for the side-panles */
 @keyframes small-to-big {
     from {width: 0px; height: 0px; border: 0px solid #030d13fe;}
     to {width: 408px; height:700px; border: 2px solid #030d13fe;}
@@ -237,11 +254,6 @@ html, body {
     max-width: 60px !important;
 }
 
-
-@keyframes outZoom {
-    from {transform:scale(1)} 
-    to {transform:scale(0)}
-}
 
 /* 100% Image Width on Smaller Screens       NEEDS TO MODIFY THIS !!!!!!!!!!!!!   */ 
 @media only screen and (max-width: 500px){

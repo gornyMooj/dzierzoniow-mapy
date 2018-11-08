@@ -302,27 +302,47 @@ function init() {
 
       var getDiv = document.getElementById("left-side-panel");
       var getDivStyle = getDiv.style;
+      var cards = document.querySelectorAll("#card-one, #card-two, #card-three, #card-four");
+
       // opens div-side-panel
       if(getDivStyle.height === "0px" || getDivStyle.height === "") {
           getDivStyle.animationName = "small-to-big";
-          getDivStyle.animationDuration = "0.7s";     
+          getDivStyle.animationDuration = "0.7s";
+          for (var i=0; i < cards.length; i++) {
+            cards[i].style.animationName = "small-to-big-cards";
+            cards[i].style.animationDelay = "0.7s";
+            cards[i].style.animationDuration = "0.7s";
+          };     
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "700px";
               getDivStyle.width = "408px";
               getDivStyle.borderWidth = "2px";
               // adds content to the side-panel (images and a name of elements)
+              for (var i=0; i < cards.length; i++) {
+                cards[i].style.opacity = "1";
+              };
               addContentToSideImagePanel();
               addOnclickToImagesInSidePanel();
            });
+         
       //closes div-side-panel
       } else {
-          console.log("dizala");
+        for (var i=0; i < cards.length; i++) {
+            cards[i].style.animationName = "big-to-small-cards";
+            cards[i].style.animationDuration = "0.2s";
+          };
           getDivStyle.animationName = "big-to-small";
           getDivStyle.animationDuration = "0.2s";
+           
+
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "0px";
               getDivStyle.width = "0px";
               getDivStyle.borderWidth = "0px";
+              for (var i=0; i < cards.length; i++) {
+                cards[i].style.opacity = "0";
+              };
+
               //getDiv.innerHTML = "";
               document.getElementById("left-side-panel-main-container").innerHTML = "";
           });
