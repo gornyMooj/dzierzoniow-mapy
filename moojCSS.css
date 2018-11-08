@@ -40,83 +40,112 @@ html, body {
     /* overflow-y: auto; */
 }
 
-#left-side-panel-main-container{
+
+
+
+
+
+#left-side-panel-legend-container{
     overflow-y: auto;
     height: 100%;
-    max-height: 500px;
+    max-height: 0px;
+}
+#left-side-panel-menu-container{
+    overflow-y: auto;
+    height: 100%;
+    max-height: 0px;
+}
+#left-side-panel-info-container{
+    overflow-y: auto;
+    height: 100%;
+    max-height: 0px;
+}
+#left-side-panel-contact-container{
+    overflow-y: auto;
+    height: 100%;
+    max-height: 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.cards{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 60px; 
+    font-weight: 900;
+    color: white;
+    letter-spacing: 2px;
 }
 
 /* THE cards that are used in the navigation between panels */
 #card-one {
     position: absolute;
-    bottom: 0px;
-    left:1px;
+    bottom: 1px;
+    left: 4px;
     height: 100%;
-    max-height: 100PX;
+    max-height:  60px;
     width: 100%;
     max-width: 102px;
-    background-color: red;
+    background-color: #eeae6d;
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
-    box-shadow:inset 0px 0px 0px 2px white;
+    box-shadow:inset 0px 0px 0px 7px white;
     opacity:0;
 }
 
 #card-two {
     position: absolute;
-    bottom: 0px;
-    left:102px;
+    bottom: 1px;
+    left: 103px;
     height: 100%;
-    max-height: 100PX;
+    max-height:  60px;
     width: 100%;
     max-width: 102px;
-    BACKGROUND-COLOR: blue;
+    BACKGROUND-COLOR: #2d4d57;
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
-    box-shadow:inset 0px 0px 0px 2px white;
+    box-shadow:inset 0px 0px 0px 7px white;
     opacity:0;
 }
 #card-three {
     position: absolute;
-    bottom: 0px;
-    left:204px;
+    bottom: 1px;
+    left: 203px;
     height: 100%;
-    max-height: 100PX;
+    max-height:  60px;
     width: 100%;
     max-width: 102px;
-    BACKGROUND-COLOR: red;
+    BACKGROUND-COLOR: #0d3852;
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
-    box-shadow:inset 0px 0px 0px 2px white;
+    box-shadow:inset 0px 0px 0px 7px white;
     opacity:0;
 }
 #card-four {
     position: absolute;
-    bottom: 0px;
-    right:1px;
+    bottom: 1px;
+    right: 4px;
     height: 100%;
-    max-height: 100PX;
+    max-height:  60px;
     width: 100%;
     max-width: 102px;
-    BACKGROUND-COLOR: blue;
+    BACKGROUND-COLOR: #030d13;
     -webkit-box-shadow:inset 0px 0px 0px 10px white;
     -moz-box-shadow:inset 0px 0px 0px 10px white;
-    box-shadow:inset 0px 0px 0px 2px white;
+    box-shadow:inset 0px 0px 0px 7px white;
     opacity:0;
 }
-
-/* Animations used for the cards  */
-@keyframes small-to-big-cards {
-    from {transform: scale(0); opacity:0;} 
-    to {transform: scale(1); opacity:1;}
-}
-
-@keyframes big-to-small-cards {
-    0% {transform: scale(1); opacity:1;} 
-    10% {transform: scale(0); opacity:0;}
-    100% {transform: scale(0); opacity:0;}
-}
-
 
 /* Animations USED for the side-panles */
 @keyframes small-to-big {

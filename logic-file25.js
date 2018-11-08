@@ -35,10 +35,7 @@ function init() {
     fullscreenControl: {
       pseudoFullscreen: false,
       position: 'topright'
-  }
-    // layers: [
-    //    Messtischblatt, 
-    // ]
+    } 
   });
 
   Messtischblatt.addTo(map);
@@ -211,12 +208,14 @@ function init() {
 
   // method that adds content to the side panel
   function addContentToSideImagePanel() {
-          for (i=0, n = jpgMaps.length; i < n; i++) {
 
+        // changes height of div from 0 to make it visible
+        var element = document.getElementById("left-side-panel-legend-container");
+        element.style.maxHeight = "639px";
+          for (i=0, n = jpgMaps.length; i < n; i++) {
               var creatDIV = document.createElement("DIV");
               creatDIV.id = 'ImageCont' + i;
               var para = document.createElement("p");
-              //var node = document.createTextNode(jpgMaps[i].title);
               para.innerHTML = jpgMaps[i].title;
 
               // create image and add to div
@@ -231,7 +230,7 @@ function init() {
               creatDIV.appendChild(para);
               creatDIV.className = "Images";
               // adds div with image and text to side-panel
-              var element = document.getElementById("left-side-panel-main-container");
+             
               element.appendChild(creatDIV);
 
               // style elements in divs: images and divs
@@ -307,20 +306,15 @@ function init() {
       // opens div-side-panel
       if(getDivStyle.height === "0px" || getDivStyle.height === "") {
           getDivStyle.animationName = "small-to-big";
-          getDivStyle.animationDuration = "0.7s";
-          for (var i=0; i < cards.length; i++) {
-            cards[i].style.animationName = "small-to-big-cards";
-            cards[i].style.animationDelay = "0.7s";
-            cards[i].style.animationDuration = "0.7s";
-          };     
+          getDivStyle.animationDuration = "0.7s";   
           getDiv.addEventListener("webkitAnimationEnd", function(){
               getDivStyle.height = "700px";
               getDivStyle.width = "408px";
               getDivStyle.borderWidth = "2px";
-              // adds content to the side-panel (images and a name of elements)
               for (var i=0; i < cards.length; i++) {
-                cards[i].style.opacity = "1";
+                  cards[i].style.opacity = "1";
               };
+              // adds content to the side-panel (images and a name of elements)
               addContentToSideImagePanel();
               addOnclickToImagesInSidePanel();
            });
@@ -328,8 +322,7 @@ function init() {
       //closes div-side-panel
       } else {
         for (var i=0; i < cards.length; i++) {
-            cards[i].style.animationName = "big-to-small-cards";
-            cards[i].style.animationDuration = "0.2s";
+            cards[i].style.opacity = "0";
           };
           getDivStyle.animationName = "big-to-small";
           getDivStyle.animationDuration = "0.2s";
@@ -342,9 +335,9 @@ function init() {
               for (var i=0; i < cards.length; i++) {
                 cards[i].style.opacity = "0";
               };
-
+              document.getElementById("left-side-panel-legend-container").style.maxHeight = "0px";
               //getDiv.innerHTML = "";
-              document.getElementById("left-side-panel-main-container").innerHTML = "";
+              document.getElementById("left-side-panel-legend-container").innerHTML = "";
           });
 
       };
