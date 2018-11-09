@@ -351,6 +351,13 @@ function addContentToMenu() {
 };
 
 function addContentToSidePanel() {
+  var currentSelectedCard = "Legenda";
+  
+  // used for not clearing the panel if the coresponding card is beeing clicked
+  if(currentSelectedCard !== selectedCard) {
+    removeContentFromSidePAnel();
+  };
+
   if(selectedCard === "Legenda") {
     console.log("adds content to Legend Panel");
     addContentToLegend();
@@ -359,7 +366,10 @@ function addContentToSidePanel() {
   if(selectedCard === "Menu") {
     console.log("adds content to Menu Panel");
     addContentToMenu();
-  };   
+  };
+  // updates 
+  currentSelectedCard = selectedCard;
+
 };
 
 function removeContentFromSidePAnel() {
