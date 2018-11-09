@@ -1,6 +1,13 @@
 function init() {
-
-  var satelliteImage = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
+  var listSidePanels = {
+        "Legend":"#left-side-panel-legend", 
+        "Menu":"#left-side-panel-menu", 
+        "Info":"#left-side-panel-info", 
+        "Kontakt":"#left-side-panel-contact"
+      },
+      cards = document.querySelectorAll("#card-one, #card-two, #card-three, #card-four"),
+      selectedCard = "Legenda";
+      satelliteImage = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'),
       Messtischblatt =  L.tileLayer('https://moojtest.s3.amazonaws.com/ready_maps/{z}/{x}/{y}.png'),
       BlackAndWhite = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'),
       BlackAndWhite2 = L.tileLayer('http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png'),
@@ -207,10 +214,10 @@ function init() {
   };
 
   // method that adds content to the side panel
-  function addContentToSideImagePanel() {
+  function addContentToLegend() {
 
         // changes height of div from 0 to make it visible
-        var element = document.getElementById("left-side-panel-legend-container");
+        var element = document.getElementById("left-side-panel-legend");
         element.style.maxHeight = "639px";
           for (i=0, n = jpgMaps.length; i < n; i++) {
               var creatDIV = document.createElement("DIV");
@@ -236,13 +243,12 @@ function init() {
               // style elements in divs: images and divs
               document.getElementById('Image' + i).style.width = "100%";
               document.getElementById('Image' + i).style.maxWidth = "30px";
-              //document.getElementById('ImageCont' + i).style.color = "#030d13fe",
-              //document.getElementById('ImageCont' + i).style.backgroundColor = "white";
+              
           };
       };
 
       // initialises onClick event for divs in pictures with images
-      function addOnclickToImagesInSidePanel() {
+      function addOnclickToLegend() {
           var divWithPicture = document.getElementsByClassName('Images');
               for (var i=0; i < divWithPicture.length; i++) {
               
@@ -301,7 +307,6 @@ function init() {
 
       var getDiv = document.getElementById("left-side-panel");
       var getDivStyle = getDiv.style;
-      var cards = document.querySelectorAll("#card-one, #card-two, #card-three, #card-four");
 
       // opens div-side-panel
       if(getDivStyle.height === "0px" || getDivStyle.height === "") {
@@ -314,9 +319,8 @@ function init() {
               for (var i=0; i < cards.length; i++) {
                   cards[i].style.opacity = "1";
               };
-              // adds content to the side-panel (images and a name of elements)
-              addContentToSideImagePanel();
-              addOnclickToImagesInSidePanel();
+              // adds content to the side-panel (sub - containers)
+              addContentToSidePanel();
            });
          
       //closes div-side-panel
@@ -335,30 +339,80 @@ function init() {
               for (var i=0; i < cards.length; i++) {
                 cards[i].style.opacity = "0";
               };
-              document.getElementById("left-side-panel-legend-container").style.maxHeight = "0px";
-              //getDiv.innerHTML = "";
-              document.getElementById("left-side-panel-legend-container").innerHTML = "";
+              removeContentFromSidePAnel();
           });
 
       };
   };
+// adds content to Menu
+function addContentToMenu() {
+  var element = document.getElementById("left-side-panel-menu");
+  element.style.maxHeight = "639px";
+};
+
+function addContentToSidePanel() {
+  if(selectedCard === "Legenda") {
+    console.log("adds content to Legend Panel");
+    addContentToLegend();
+    addOnclickToLegend();
+  };
+  if(selectedCard === "Menu") {
+    console.log("adds content to Menu Panel");
+    addContentToMenu();
+  };   
+};
+
+function removeContentFromSidePAnel() {
+  console.log("Removes content from the legend panel");
+
+  // loop removing content from the side panel
+  Object.keys(listSidePanels ).forEach(function(key) {
+
+    // Works but remove content from all panels
+    var panelFromList = listSidePanels [key].slice(1, listSidePanels [key].length);
+    
+    var selectPanel = document.getElementById(panelFromList);
+    selectPanel.style.maxHeight = "0px";
+    selectPanel.innerHTML = "";
+
+  });
+  
+  
+  
+  
+  // document.getElementById("left-side-panel-legend").style.maxHeight = "0px";
+  // document.getElementById("left-side-panel-legend").innerHTML = "";
+};
+
+// assignes value when cars is clicked
+// Object.keys(listSidePanels ).forEach(function(key) {
+
+//   //document.getElement
+//   var panelFromList = listSidePanels [key].slice(1, listSidePanels [key].length);
+  
+//   var selectPanel = document.getElementById(panelFromList);
+//   selectPanel.onclick = function() {
+//     console.log("tatataaa");
+//   };
+
+// });
+
+for (var i=0; i < cards.length; i++) {
+  cards[i].onclick = function() {
+    selectedCard = this.innerHTML;
+    console.log(selectedCard);
+  };
+};
 
 
 
 // button onclick when window.onload is used
 var opSideDivOnClick = document.getElementById('logoMain');
-  opSideDivOnClick.onclick = function() {
-      
+  opSideDivOnClick.onclick = function() {    
     openDiv();
-
-
   };
 
   openDiv();
-
-// http://css3.bradshawenterprises.com/cfimg/     styling image
-
-
 };
 
 window.onload = init;

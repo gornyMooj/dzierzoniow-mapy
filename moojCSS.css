@@ -41,29 +41,28 @@ html, body {
 }
 
 
-
-
-
-
-#left-side-panel-legend-container{
+#left-side-panel-legend{
     overflow-y: auto;
     height: 100%;
     max-height: 0px;
 }
-#left-side-panel-menu-container{
+#left-side-panel-menu{
     overflow-y: auto;
     height: 100%;
     max-height: 0px;
+    background-color: #2d4d57;
 }
-#left-side-panel-info-container{
+#left-side-panel-info{
     overflow-y: auto;
     height: 100%;
     max-height: 0px;
+    background-color: #0d3852;
 }
-#left-side-panel-contact-container{
+#left-side-panel-contact{
     overflow-y: auto;
     height: 100%;
     max-height: 0px;
+    background-color: #2d4d57;
 }
 
 
@@ -86,6 +85,7 @@ html, body {
     font-weight: 900;
     color: white;
     letter-spacing: 2px;
+    cursor: pointer;
 }
 
 /* THE cards that are used in the navigation between panels */
