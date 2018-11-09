@@ -350,13 +350,21 @@ function addContentToMenu() {
   element.style.maxHeight = "639px";
 };
 
+// adds content to Info
+function addContentToInfo() {
+  var element = document.getElementById("left-side-panel-info");
+  element.style.maxHeight = "639px";
+};
+
+// adds content to contact
+function addContentToContact() {
+  var element = document.getElementById("left-side-panel-contact");
+  element.style.maxHeight = "639px";
+};
+
+
+
 function addContentToSidePanel() {
-  var currentSelectedCard = "Legenda";
-  
-  // used for not clearing the panel if the coresponding card is beeing clicked
-  if(currentSelectedCard !== selectedCard) {
-    removeContentFromSidePAnel();
-  };
 
   if(selectedCard === "Legenda") {
     console.log("adds content to Legend Panel");
@@ -367,8 +375,15 @@ function addContentToSidePanel() {
     console.log("adds content to Menu Panel");
     addContentToMenu();
   };
-  // updates 
-  currentSelectedCard = selectedCard;
+  if(selectedCard === "Info") {
+    console.log("adds content to Info Panel");
+    addContentToInfo();
+  };
+  if(selectedCard === "Kontakt") {
+    console.log("adds content to Kontakt Panel");
+    addContentToContact();
+  };
+
 
 };
 
@@ -411,6 +426,8 @@ for (var i=0; i < cards.length; i++) {
   cards[i].onclick = function() {
     selectedCard = this.innerHTML;
     console.log(selectedCard);
+    removeContentFromSidePAnel();
+    addContentToSidePanel();
   };
 };
 
