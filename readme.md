@@ -13,6 +13,8 @@ Once the rasters were prepared, the basemap was created. It was done using [Tile
 
 Logo was created in [Inkscape](https://inkscape.org/) professional quality vector graphics software which runs on Linux, Mac OS X and Windows desktop computers.
 
+![Dzierzioniow](https://github.com/gornyMooj/dzierzoniow-mapy/blob/master/images/text1272.png)
+
 ### Tools and technologies used
 - Leaflet.js
 - D3.js
